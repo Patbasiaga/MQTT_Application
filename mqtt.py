@@ -27,7 +27,6 @@ class MQTT:
         self.topic = msg.topic
         self.received = True
 
-
        # try:
         self.converted_message = msg.payload.decode('utf-8')
       #  except:
@@ -59,3 +58,7 @@ class MQTT:
         self.mqtt_client.subscribe(topic)
         print(topic)
 
+    def message_received(self):
+        if self.received:
+            self.received = False
+            return True

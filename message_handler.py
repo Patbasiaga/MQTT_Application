@@ -3,21 +3,6 @@ from mqtt import MQTT
 from config import MQTT_CONFIG
 import time
 
-
-def message_received(brooker):
-    if brooker.received:
-        brooker.received = False
-        return True
-
-
-def correct_msg_received(brooker):
-    try:
-        MQTT_CONFIG.TOPICS.index(brooker.topic)
-        return True
-    except ValueError:
-        return False
-
-
 #Live Bit Handling
 def received_live_bit(brooker):
     if brooker.topic == 'Live_Bit' and brooker.converted_message == 'ON':
@@ -28,6 +13,11 @@ def send_live_bit(brooker):
     time.sleep(1)
     brooker.mqtt_publish("Live_Bit", "OFF")
     brooker.live_bit = 0
+
+
+def live_bit_handle(brooker):
+    if received_live_bit(brooker):
+        send_live_bit(brooker)
 
 
 def received_request_land():

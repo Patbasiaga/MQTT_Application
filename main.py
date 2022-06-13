@@ -5,25 +5,26 @@ import message_handler
 
 
 class main:
+
     def __init__(self):
         self.mqtt_client = MQTT()
         self.plc_client = PLC()
 
-    #@staticmethod
     def start(self):
-        message_handler.message_received(self.mqtt_client)
         if self.mqtt_client.is_connected:
-            if message_handler.received_live_bit(self.mqtt_client):
-                message_handler.send_live_bit(self.mqtt_client)
+            if self.mqtt_client.message_received():
+                message_handler.live_bit_handle(self.mqtt_client)
 
         else:
             self.mqtt_client.connect_mqtt()
+            time.sleep(1)
+        print(self.mqtt_client.is_connected)
+        time.sleep(1)
 
-
-gmain = main()
+Main = main()
 
 
 while True:
-    gmain.start()
+    Main.start()
 
 
