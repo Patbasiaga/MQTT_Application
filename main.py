@@ -9,15 +9,21 @@ class main:
         self.mqtt_client = MQTT()
         self.plc_client = PLC()
 
+    #@staticmethod
     def start(self):
-        if message_handler.message_received():
-            print(message_handler.correct_msg_received())
+        message_handler.message_received(self.mqtt_client)
+        if self.mqtt_client.is_connected:
+            if message_handler.received_live_bit(self.mqtt_client):
+                message_handler.send_live_bit(self.mqtt_client)
+
+        else:
+            self.mqtt_client.connect_mqtt()
 
 
-main = main()
+gmain = main()
 
 
 while True:
-    main.start()
+    gmain.start()
 
 

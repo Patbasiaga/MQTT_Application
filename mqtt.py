@@ -10,6 +10,7 @@ class MQTT:
         self.topic = ''
         self.is_connected = False
         self.received = False
+        self.live_bit = 0
 
     def on_connect(self, client, userdata, flags, rc):
         for topic in MQTT_CONFIG.TOPICS:
