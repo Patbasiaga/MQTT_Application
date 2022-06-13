@@ -2,13 +2,10 @@ import snap7
 import snap7.types
 from snap7.util import *
 from snap7.types import *
+from config import PLC_CONFIG
 
 
 class PLC:
-
-    IP = "192.168.0.1"
-    RACK = 0
-    SLOT = 1
 
     def __init__(self):
         self.state = ''
@@ -16,7 +13,7 @@ class PLC:
         self.datatype = S7WLDWord
 
     def connect_to_plc(self):
-        self.plc_client.connect(PLC.IP, PLC.RACK, PLC.SLOT)
+        self.plc_client.connect(PLC_CONFIG.IP, PLC_CONFIG.RACK, PLC_CONFIG.SLOT)
         self.state = self.plc_client.get_cpu_state()
         print(f'State {self.state}')
 
