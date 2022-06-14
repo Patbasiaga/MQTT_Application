@@ -8,13 +8,13 @@ def received_live_bit(brooker):
 
 
 def send_live_bit(brooker):
-    time.sleep(1)
     brooker.mqtt_publish("Live_Bit", "OFF")
     brooker.live_bit = 0
 
 
 def live_bit_handle(brooker):
     if received_live_bit(brooker):
+        time.sleep(1)
         send_live_bit(brooker)
 
 
