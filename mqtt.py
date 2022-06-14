@@ -4,6 +4,11 @@ from config import MQTT_CONFIG
 
 class MQTT:
 
+    TOPICS = MQTT_CONFIG.TOPICS
+    PASSWORD = MQTT_CONFIG.PASSWORD
+    USERNAME = MQTT_CONFIG.USERNAME
+    MQTT_SERVER_ADDRESS = MQTT_CONFIG.MQTT_SERVER_ADDRESS
+
     def __init__(self):
         self.mqtt_client = mqtt.Client()
         self.converted_message = 0
@@ -13,7 +18,7 @@ class MQTT:
         self.live_bit = 0
 
     def on_connect(self, client, userdata, flags, rc):
-        for topic in MQTT_CONFIG.TOPICS:
+        for topic in MQTT.TOPICS:
             self.mqtt_subscribe(topic)
         print("Connected with result code " + str(rc))
 
@@ -37,14 +42,14 @@ class MQTT:
         self.mqtt_client.on_disconnect = self.on_disconnect
         self.mqtt_client.on_message = self.on_message
         try:
-            print("connecting to mqtt server " + str(MQTT_CONFIG.MQTT_SERVER_ADDRESS))
-            self.mqtt_client.username_pw_set(MQTT_CONFIG.USERNAME, MQTT_CONFIG.PASSWORD)
-            self.mqtt_client.connect(MQTT_CONFIG.MQTT_SERVER_ADDRESS, 1883, 5)
+            print("connecting to mqtt server " + str(MQTT.MQTT_SERVER_ADDRESS))
+            self.mqtt_client.username_pw_set(MQTT.USERNAME, MQTT.PASSWORD)
+            self.mqtt_client.connect(MQTT.MQTT_SERVER_ADDRESS, 1883, 5)
             self.mqtt_client.loop_start()
             self.is_connected = True
 
-        except Exception as e:
-            print("Unable to connect to MQTT server" + str(MQTT_CONFIG.MQTT_SERVER_ADDRESS))
+        except Exception:
+            print("Unable to connect to MQTT server" + str(MQTT.MQTT_SERVER_ADDRESS))
 
     def disconnect_mqtt(self):
         self.mqtt_client.loop_stop()

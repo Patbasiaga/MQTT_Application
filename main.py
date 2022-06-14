@@ -4,7 +4,7 @@ import time
 import message_handler
 
 
-class main:
+class Main:
 
     def __init__(self):
         self.mqtt_client = MQTT()
@@ -18,14 +18,12 @@ class main:
         else:
             self.mqtt_client.connect_mqtt()
             time.sleep(1)
-        print(self.mqtt_client.is_connected)
-        time.sleep(1)
 
 
-Main = main()
+main = Main()
 
 
 while True:
-    Main.start()
+    main.start()
 
 

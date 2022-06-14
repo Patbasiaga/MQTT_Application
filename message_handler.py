@@ -1,9 +1,7 @@
-from plc import PLC
-from mqtt import MQTT
-from config import MQTT_CONFIG
 import time
 
-#Live Bit Handling
+
+# Live Bit Handling
 def received_live_bit(brooker):
     if brooker.topic == 'Live_Bit' and brooker.converted_message == 'ON':
         return True
