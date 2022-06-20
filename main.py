@@ -11,19 +11,19 @@ class Main:
         self.plc_client = PLC()
 
     def start(self):
-        if self.mqtt_client.is_connected:
-            if self.mqtt_client.message_received():
-                message_handler.live_bit_handle(self.mqtt_client)
+        while True:
+            if self.mqtt_client.is_connected:
+                if self.mqtt_client.message_received():
+                    message_handler.live_bit_handle(self.mqtt_client)
 
-        else:
-            self.mqtt_client.connect_mqtt()
-            time.sleep(1)
+            else:
+                self.mqtt_client.connect_mqtt()
+                time.sleep(1)
 
 
 main = Main()
 
 
-while True:
-    main.start()
+main.start()
 
 
