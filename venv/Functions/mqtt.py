@@ -39,7 +39,7 @@ class MQTT:
         self.received = True
         self.json_message = msg.payload.decode('utf-8')
         self.converted_message = json.loads(self.json_message)
-        self.decode_topic()
+        self.handle_the_right_topic()
 
     def connect_mqtt(self):
         self.disconnect_mqtt()
@@ -73,7 +73,7 @@ class MQTT:
             self.received = False
             return True
 
-    def decode_topic(self):
+    def handle_the_right_topic(self):
         pass
 
 

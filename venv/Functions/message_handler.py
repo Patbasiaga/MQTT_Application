@@ -18,21 +18,6 @@ class MessageHandler:
                 self.mqtt_broker.converted_message["device_IP"] == config.MQTT_CONFIG_CLIENT.DEVICE_IP):
             return True
 
-    def write_json_received_message_to_file(self):
+    def write_json_message_to_file(self):
         with open('../../test_json.json', 'w') as file:
             file.write(self.mqtt_broker.json_message)
-
-    @staticmethod
-    def is_acknowledge_message(acknowledge_request):
-        if acknowledge_request:
-            acknowledge_request = False
-            return False
-        else:
-            return True
-
-
-
-
-
-
-    # MIRROR Handling
