@@ -13,8 +13,8 @@ class MQTT:
 
     def __init__(self):
         self.mqtt_client = mqtt.Client()
-        self.json_message = 0
-        self.converted_message = 0
+        self.json_message = ''
+        self.converted_message = {}
         self.topic = ''
         self.is_connected = False
         self.received = False
@@ -25,12 +25,12 @@ class MQTT:
         for topic in MQTT.TOPICS:
             self.mqtt_subscribe(topic)
         print("Connected with result code " + str(rc))
-        self.communication.log_in_status(status='Connected')
+        self.communication.log_in_status(status='Connected', rc_code=rc)
 
     def on_disconnect(self, client, userdata, rc):
-        print("Disconnected")
+        print("Disconnected from MQTT server with code: %s" % rc)
         self.disconnect_mqtt()
-        self.communication.log_in_status(status='Disconnected')
+        self.communication.log_in_status(status='Disconnected', rc_code=rc)
         self.is_connected = False
 
     def on_message(self, client, userdata, msg):
