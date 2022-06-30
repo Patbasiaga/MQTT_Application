@@ -1,4 +1,4 @@
-import TextFileWriter
+import text_file_writer
 import config
 import socket
 from datetime import datetime as timer
@@ -6,7 +6,7 @@ from datetime import datetime as timer
 
 class CommunicationStatus:
     def __init__(self):
-        self.write_file = TextFileWriter.TextFileWriter()
+        self.write_file = text_file_writer.TextFileWriter()
         self.write_path = config.WRITE_FILE_CONFIG.CONNECTION_LOG_PATH
         self.message = {}
 

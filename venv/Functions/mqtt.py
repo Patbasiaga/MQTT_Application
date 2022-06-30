@@ -2,6 +2,7 @@ import paho.mqtt.client as mqtt
 import config
 import json
 import communication_status
+import message_handler_ping
 
 
 class MQTT:
@@ -18,7 +19,6 @@ class MQTT:
         self.topic = ''
         self.is_connected = False
         self.received = False
-        self.ack_req = 0
         self.communication = communication_status.CommunicationStatus()
 
     def on_connect(self, client, userdata, flags, rc):
@@ -37,12 +37,9 @@ class MQTT:
         print(f"Received '{msg.payload.decode('utf-8')}' from '{msg.topic}' topic")
         self.topic = msg.topic
         self.received = True
-
-       # try:
         self.json_message = msg.payload.decode('utf-8')
         self.converted_message = json.loads(self.json_message)
-      #  except:
-       #     print("Recived Data Is Not Integer Number")
+        self.decode_topic()
 
     def connect_mqtt(self):
         self.disconnect_mqtt()
@@ -58,8 +55,6 @@ class MQTT:
 
         except Exception:
             print("Unable to connect to MQTT server" + str(MQTT.MQTT_SERVER_ADDRESS))
-
-    #def on_connection_lost(self):
 
     def disconnect_mqtt(self):
         self.mqtt_client.loop_stop()
@@ -77,3 +72,9 @@ class MQTT:
         if self.received:
             self.received = False
             return True
+
+    def decode_topic(self):
+        pass
+
+
+
