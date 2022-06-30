@@ -14,7 +14,6 @@ class Main:
         while True:
             if self.mqtt_client.is_connected:
                 pass
-            # TODO DEBUG RECONNECTION - NOT WORKING PROPERLY - HANDLE RECONNECTING
             else:
                 self.mqtt_client.connect_mqtt()
                 time.sleep(1)
