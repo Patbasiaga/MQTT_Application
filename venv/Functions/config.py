@@ -11,10 +11,10 @@ class PLC_CONFIG:
  #   TOPICS = ["HUB_001", "HUB_002", "Live_Bit"]
 
 class MQTT_CONFIG_SERVER:
-    IP_ADDRESS = '192.168.1.59'
+    IP_ADDRESS = '10.121.18.49'
     USERNAME = "patryk"
     PASSWORD = "patryk"
-    TOPICS = ["HEARTBEAT", "PING", "MIRROR"]
+    TOPICS = ["HEARTBEAT", "PING", "MIRROR", 'REAKTO/telemetry/drone1']
 
 
 class MQTT_CONFIG_CLIENT:
@@ -26,5 +26,7 @@ class MQTT_CONFIG_CLIENT:
 
 
 class WRITE_FILE_CONFIG:
-    MESSAGE_LOG_PATH = r"C:\Users\Patryk\Desktop\PycharmProjects\Python\MQTT\venv\Logs"
-    CONNECTION_LOG_PATH = r"C:\Users\Patryk\Desktop\PycharmProjects\Python\MQTT\venv\Logs"
+    #MESSAGE_LOG_PATH = r"C:\Users\Patryk\Desktop\PycharmProjects\Python\MQTT\venv\Logs"
+    #CONNECTION_LOG_PATH = r"C:\Users\Patryk\Desktop\PycharmProjects\Python\MQTT\venv\Logs"
+    MESSAGE_LOG_PATH = r"/app"
+    CONNECTION_LOG_PATH = r"/app"

@@ -13,11 +13,11 @@ class MqttHandler(MQTT):
         self.message_handler_heartbeat = message_handler_heartbeat.MessageHandlerHeartbeat(self)
 
     def handle_the_right_topic(self):
-        if self.topic == "PING":
-            self.message_handler_ping.process_message()
+        #if self.topic == "PING":
+        self.message_handler_ping.process_message()
 
-        if self.topic == "MIRROR":
-            self.message_handler_mirror.process_message()
+       # if self.topic == "MIRROR":
+       #     self.message_handler_mirror.process_message()
 
-        if self.topic == "HEARTBEAT":
-            self.message_handler_heartbeat.is_valid_message()
+        #if self.topic == "HEARTBEAT":
+        #    self.message_handler_heartbeat.is_valid_message()

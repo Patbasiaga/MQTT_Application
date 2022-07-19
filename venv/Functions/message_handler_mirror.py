@@ -41,9 +41,9 @@ class MessageHandlerMirror:
         self.message_json = ''
 
     def process_message(self):
-        if self.is_message():
+        if self.is_valid_message():
             self.clear_message()
             self.create_message()
             self.send_message()
-            self.text_file_writer.handle_writing_to_file(self.path_to_write_file, 'ReceivedCorrectMessage',
-                                                         'a', self.message)
+            #self.text_file_writer.handle_writing_to_file(self.path_to_write_file, 'ReceivedCorrectMessage',
+                                                #         'a', self.message)

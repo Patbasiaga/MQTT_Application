@@ -2,10 +2,10 @@ import mqtt
 import plc
 import time
 import mqtt_client
+import message_handler_ping
 
 
 class Main:
-
     def __init__(self):
         self.mqtt_client = mqtt_client.MqttHandler()
         self.plc_client = plc.PLC()
